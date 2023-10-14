@@ -9,6 +9,8 @@ class OfficeSerializer(serializers.ModelSerializer):
             "id",
             "sale_point_name",
             "address",
+            "latitude",
+            "longitude",
             "status",
             "office_type",
         ]
