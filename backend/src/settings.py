@@ -31,8 +31,9 @@ INSTALLED_APPS = [
     "rest_framework",
     "drf_yasg",
     "src.core.apps.CoreConfig",
+    'corsheaders',
 ]
-
+CORS_ORIGIN_ALLOW_ALL = True
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -42,6 +43,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.middleware.locale.LocaleMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = "src.urls"
