@@ -1,11 +1,15 @@
 from rest_framework import viewsets
 from src.core.models import Atm
 from src.core.serializers import AtmSerializer, DetailAtmSerializer
+from src.core.filters.atm import AtmFilterSet
+import django_filters
 
 
 class AtmViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Atm.objects.all()
     serializer_class = AtmSerializer
+    filterset_class = AtmFilterSet
+    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
 
     action_serializers = {
         "retrieve": DetailAtmSerializer,
