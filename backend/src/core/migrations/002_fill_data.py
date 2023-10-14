@@ -8,10 +8,14 @@ import json
 from enum import StrEnum
 import random
 
-with (BASE_DIR / "src" / "core" / "migrations" / "init_data" / "002_offices.json").open("r") as f:
+with (BASE_DIR / "src" / "core" / "migrations" / "init_data" / "002_offices.json").open(
+    "r"
+) as f:
     offices = json.load(f)
 
-with (BASE_DIR / "src" / "core" / "migrations" / "init_data" / "002_atms.json").open("r") as f:
+with (BASE_DIR / "src" / "core" / "migrations" / "init_data" / "002_atms.json").open(
+    "r"
+) as f:
     atms = json.load(f)
 
 
@@ -114,29 +118,39 @@ def fill_offices(Model, SchedulModel):
             has_ramp=random.choice([True, False]),
             latitude=office.get("latitude"),
             longitude=office.get("longitude"),
-            metro_station=office.get("metroStation")
+            metro_station=office.get("metroStation"),
         )
         office_obj.save()
         for day in list(DaysOfWeek):
             legal = SchedulModel(
                 office=office_obj,
                 days_of_week=day,
-                open_time=None if day in [DaysOfWeek.SATURDAY, DaysOfWeek.SUNDAY] else time(hour=10),
-                close_time=None if day in [DaysOfWeek.SATURDAY, DaysOfWeek.SUNDAY] else time(hour=20),
+                open_time=None
+                if day in [DaysOfWeek.SATURDAY, DaysOfWeek.SUNDAY]
+                else time(hour=10),
+                close_time=None
+                if day in [DaysOfWeek.SATURDAY, DaysOfWeek.SUNDAY]
+                else time(hour=20),
                 service_mode=1,
                 is_serves=True,
-                is_weekend=True if day in [DaysOfWeek.SATURDAY, DaysOfWeek.SUNDAY] else False,
-
+                is_weekend=True
+                if day in [DaysOfWeek.SATURDAY, DaysOfWeek.SUNDAY]
+                else False,
             )
             individ = SchedulModel(
                 office=office_obj,
                 days_of_week=day,
-                open_time=None if day in [DaysOfWeek.SATURDAY, DaysOfWeek.SUNDAY] else time(hour=10),
-                close_time=None if day in [DaysOfWeek.SATURDAY, DaysOfWeek.SUNDAY] else time(hour=20),
+                open_time=None
+                if day in [DaysOfWeek.SATURDAY, DaysOfWeek.SUNDAY]
+                else time(hour=10),
+                close_time=None
+                if day in [DaysOfWeek.SATURDAY, DaysOfWeek.SUNDAY]
+                else time(hour=20),
                 service_mode=2,
                 is_serves=True,
-                is_weekend=True if day in [DaysOfWeek.SATURDAY, DaysOfWeek.SUNDAY] else False,
-
+                is_weekend=True
+                if day in [DaysOfWeek.SATURDAY, DaysOfWeek.SUNDAY]
+                else False,
             )
             legal.save()
             individ.save()
@@ -157,11 +171,8 @@ def fill_atms(Model, ServiceModel):
                 service=service,
                 service_capability=atm.get("services")[service]["serviceCapability"],
                 service_activity=atm.get("services")[service]["serviceActivity"],
-
             )
             service.save()
-
-
 
 
 def forwards_func(apps, schema_editor):

@@ -62,7 +62,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "app.wsgi.application"
+WSGI_APPLICATION = "src.wsgi.application"
 
 COMMON_DB_CONFIG = {
     "ENGINE": "django.db.backends.postgresql",
