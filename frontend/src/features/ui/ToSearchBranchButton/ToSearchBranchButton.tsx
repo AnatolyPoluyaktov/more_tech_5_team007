@@ -14,7 +14,7 @@ const ToSearchBranchButton = () => {
       </h2>
       <button
         className={`${rootClassName}__button`}
-        onClick={(e) => {
+        onClick={() => {
           navigate("/search-bank-branch");
         }}
       >

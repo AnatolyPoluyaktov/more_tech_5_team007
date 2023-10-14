@@ -42,6 +42,7 @@ const YandexMap = () => {
             instanceRef={(inst) =>
               inst?.events.add("click", async () => {
                 const data = await getBranchRequest(branch.id);
+                console.log(data);
                 // if (data == null) {
                 //   return;
                 // }

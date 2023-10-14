@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { BranchInput } from "../../../features";
 import { FilterButton } from "../../../shared";
 import "./Filters.css";
