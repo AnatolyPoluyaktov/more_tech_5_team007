@@ -1,0 +1,11 @@
+.bank-features {
+  display: flex;
+  justify-content: space-between;
+  height: inherit;
+  margin-left: 4.63vw;
+  width: 40vw;
+}
+
+.bank-features::-webkit-scrollbar {
+  width: 0;
+}

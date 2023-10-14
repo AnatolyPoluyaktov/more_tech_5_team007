@@ -1,0 +1,14 @@
+.search-bank-branch__header {
+  height: 6.43vh;
+}
+
+.search-bank-branch__logo {
+  width: 8.73vh;
+  height: 4.69vh;
+  margin-top: 1.5vh;
+  margin-left: 12.6vw;
+}
+
+.search-bank-branch__main {
+  position: relative;
+}

@@ -1,0 +1,27 @@
+.branch-with-distance {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.branch-with-distance_clickable {
+  cursor: pointer;
+}
+
+.branch-with-distance__logo {
+  width: 2.39vw;
+  height: 2.39vw;
+}
+
+.branch-with-distance__address {
+  width: 14.76vw;
+  margin: 0;
+  font-size: 1vw;
+}
+
+.branch-with-distance__distance {
+  align-self: flex-start;
+  color: #1e4bd2;
+  margin: 0;
+  font-size: 1vw;
+}

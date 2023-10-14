@@ -1,0 +1,13 @@
+.branch-input_search {
+  background: url("./imgs/search.png") no-repeat scroll 2px 2px;
+}
+
+.branch-input {
+  width: 21.5vw;
+  background-color: #d9d9d9;
+  color: #2f3441;
+  border-radius: 20px;
+  padding: 1vw;
+  border: none;
+  padding-left: 2.5vw;
+}
