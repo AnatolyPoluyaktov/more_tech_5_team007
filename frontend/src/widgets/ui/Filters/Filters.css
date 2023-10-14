@@ -1,0 +1,37 @@
+.filters {
+  width: 25vw;
+  height: 61.53vw;
+  background-color: white;
+  position: absolute;
+  left: 7vw;
+  top: 3.93vh;
+  border-radius: 1.04vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.filters__input {
+  margin-top: 1.52vw;
+}
+
+.filters__section {
+  width: 90%;
+  margin-left: 1.52vw;
+}
+
+.filters__title {
+  margin-bottom: 24px;
+}
+
+.filters__buttons {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25vw;
+}
+
+.filters__closest-branches {
+  margin-top: 24px;
+  margin-bottom: 70px;
+}

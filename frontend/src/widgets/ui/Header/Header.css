@@ -1,0 +1,22 @@
+.header {
+  width: 100vw;
+  height: 12.96vh;
+}
+
+.header__container {
+  width: 87.79vw;
+  height: inherit;
+  margin-left: 5.21vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header__img {
+  width: 6.46vw;
+  height: 2.19vw;
+}
+
+.header__nav {
+  margin-left: 1.25vw;
+}

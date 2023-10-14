@@ -1,0 +1,21 @@
+.bank-feature {
+  height: inherit;
+  width: 13.13vw;
+  border-radius: 0.63vw;
+  border: 1px solid #738abb;
+  box-sizing: border-box;
+}
+
+.bank-feature__img {
+  width: 3.75vw;
+  height: 3.75vw;
+  margin-left: 1.04vw;
+  margin-top: 1.48vw;
+}
+
+.bank-feature__feature {
+  font-size: 1.04vw;
+  margin-left: 1.04vw;
+  line-height: 1.25vw;
+  color: white;
+}

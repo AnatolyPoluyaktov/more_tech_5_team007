@@ -1,0 +1,22 @@
+.landing {
+  width: 100vw;
+  height: 100vh;
+  background-color: #4271e1;
+  background-image: url("./imgs/landing.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.landing__main {
+  margin-top: 53.66vh;
+  margin-left: 5.21vw;
+  height: 14.64vw;
+}
+
+.landing__container {
+  height: inherit;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+}

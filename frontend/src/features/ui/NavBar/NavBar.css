@@ -1,0 +1,9 @@
+.nav-bar {
+}
+
+.nav-bar__links {
+  width: 32.14vw;
+  display: flex;
+  justify-content: space-between;
+  align-self: flex-start;
+}

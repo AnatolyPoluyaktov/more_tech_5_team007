@@ -1,0 +1,19 @@
+body {
+  margin: 0;
+  min-width: 500px;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+}
+
+* {
+  font-family: Inter, sans-serif;
+  font-style: normal;
+  font-size: 1.25vw;
+}
+
+p {
+  margin: 0;
+}
