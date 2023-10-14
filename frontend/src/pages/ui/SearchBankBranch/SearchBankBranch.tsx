@@ -6,14 +6,7 @@ import logo from "./imgs/logo_light.png";
 const SearchBankBranch = () => {
   const bankBranchesStore = useBankBranchesStore();
   useEffect(() => {
-    fetch("http://146.190.161.174:8000/api/offices", {
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers": "*",
-      },
-    })
+    fetch("http://146.190.161.174:8000/api/offices/")
       .then((response) => response.json())
       .then((json) => bankBranchesStore.setBranches(json))
       .catch((e) => console.log(e));
