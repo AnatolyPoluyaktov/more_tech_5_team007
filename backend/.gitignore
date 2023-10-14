@@ -153,3 +153,4 @@ media
 gl-code-quality-report.json
 junit.xml
 
+../.ruff_cache

@@ -1,7 +1,5 @@
 from django.db import models
-from backend.src.core.choices.office_status import OfficeStatuses
-
-
+from src.core.choices.office_status import OfficeStatuses
 class Office(models.Model):
     sale_point_name = models.CharField(max_length=255, help_text="Наименование ТП")
     address = models.CharField(max_length=255, help_text="Адрес ТП")
@@ -9,8 +7,8 @@ class Office(models.Model):
     rko = models.BooleanField()
     office_type = models.CharField(max_length=255)
     sale_point_format = models.CharField(max_length=255)
-    suo = models.BooleanField()
-    have_pandus = models.BooleanField()
+    suo_avialability = models.BooleanField()
+    has_ramp = models.BooleanField()
     latitude = models.DecimalField(max_digits=8, decimal_places=6)
     longitude = models.DecimalField(max_digits=9, decimal_places=6)
-    metro_station = models.CharField(max_length=255)
+    metro_station = models.CharField(max_length=255, null=True)
