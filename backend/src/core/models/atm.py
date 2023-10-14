@@ -8,3 +8,4 @@ class Atm(models.Model):
     status = models.CharField(choices=AtmStatuses.choices)
     longitude = models.DecimalField(max_digits=9, decimal_places=6)
     all_day = models.BooleanField()
+    workloads = models.JSONField()
