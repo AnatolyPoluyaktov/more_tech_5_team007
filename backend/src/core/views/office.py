@@ -3,9 +3,12 @@ from src.core.models import Office
 from src.core.serializers import OfficeSerializer, DetailOfficeSerializer
 from rest_framework.decorators import action
 from rest_framework.response import Response
-
+from drf_yasg.utils import swagger_auto_schema
 from src.core.filters.office import OfficeFilterSet
 import django_filters
+from src.core.serializers.efficient_search_input_data import (
+    EfficientSearchOfficeInputData,
+)
 
 
 class OfficeViewSet(viewsets.ReadOnlyModelViewSet):
@@ -24,6 +27,7 @@ class OfficeViewSet(viewsets.ReadOnlyModelViewSet):
 
         return super(OfficeViewSet, self).get_serializer_class()
 
+    @swagger_auto_schema(methods=["post"], request_body=EfficientSearchOfficeInputData)
     @action(methods=["POST"], detail=False)
     def get_most_efficient_office(self, request, pk=None):
         return Response({"message": f"Custom GET action executed for instance {pk}."})
