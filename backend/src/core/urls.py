@@ -10,7 +10,7 @@ platform_router = DefaultRouter()
 
 platform_router.register("offices", OfficeViewSet, "OfficeViewSet")
 platform_router.register("atm-services", AtmServiceViewSet, "AtmServiceViewset")
-platform_router.register('atms', AtmViewSet, "AtmViewSet")
+platform_router.register("atms", AtmViewSet, "AtmViewSet")
 platform_router.register("schedulers", SchedulerViewset, "SchedulerViewset")
 
 urlpatterns = platform_router.urls

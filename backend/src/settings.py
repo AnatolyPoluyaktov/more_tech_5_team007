@@ -31,14 +31,19 @@ INSTALLED_APPS = [
     "rest_framework",
     "drf_yasg",
     "src.core.apps.CoreConfig",
-    'corsheaders',
+    "corsheaders",
+    "django_filters",
 ]
+
+REST_FRAMEWORK = {
+    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"]
+}
 CORS_ALLOW_ALL_HEADERS = True
 CORS_ALLOW_ALL_ORIGINS = True
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    'corsheaders.middleware.CorsMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -48,9 +53,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "src.urls"
-CORS_ALLOWED_ORIGINS = [
-"http://0.0.0.0:5173"
-]
+CORS_ALLOWED_ORIGINS = ["http://0.0.0.0:5173"]
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",

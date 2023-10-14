@@ -1,9 +1,6 @@
 from src.settings import BASE_DIR
-from django.db import migrations, models
-from pydantic import BaseModel
+from django.db import migrations
 from datetime import time
-from collections import defaultdict
-import datetime
 import json
 from enum import StrEnum
 import random
