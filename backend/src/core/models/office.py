@@ -10,6 +10,7 @@ class Office(models.Model):
     office_type = models.CharField(max_length=255)
     sale_point_format = models.CharField(max_length=255)
     suo_avialability = models.BooleanField()
+    workloads = models.JSONField()
     has_ramp = models.BooleanField()
     latitude = models.DecimalField(max_digits=8, decimal_places=6)
     longitude = models.DecimalField(max_digits=9, decimal_places=6)
