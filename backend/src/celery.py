@@ -3,7 +3,7 @@ import os
 from celery import Celery
 from src.core.services.time_serials.time_series import make_time_series, get_time_series
 from celery.schedules import crontab
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "core.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "str.settings")
 
 app = Celery("core")
 app.config_from_object("django.conf:settings", namespace="CELERY")

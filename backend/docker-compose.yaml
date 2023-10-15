@@ -1,63 +1,75 @@
 version: "3.5"
 
 services:
-  rabbitmq_server:
-    image: rabbitmq:3-management
-    ports:
-      # Expose the port for the worker to add/get tasks
-      - 5672:5672
-      # OPTIONAL: Expose the GUI port
-      - 15672:15672
- # Deploy the worker
-  worker:
-    # Build using the worker Dockerfile
-    build:
-      context: .
-      dockerfile: worker.Dockerfile
-    # Need to access the database
-    # OPTIONAL: If you worker needs to access your db that is deployed
-    # locally, then make the network mode as host.
-    network_mode: host
-    # Pass the rabbitmq_uri as env varible in order to
-    # connect to our service
-    environment:
-      # NOTE: Below we are using 127.0.0.1 because this container
-      # will run on the host network, thus it will have access to the
-      # host network.
-      # If it would not have run locally, we would have had to
-      # connect using the service name like following:
-      # amqp:rabbitmq_server:5672
-      rabbitmq_uri: amqp://127.0.0.1:5672
-    # Make it wait for rabbitmq deployment
-    depends_on:
-      - rabbitmq_server
-  celery-beat:
-    build: ./project
-    command: celery -A core beat -l info
-    env_file:
-      - ./.env
-    depends_on:
-      - rabbitmq_server
   db:
     image: postgres:15
     environment:
-        POSTGRES_USER: ${DATABASE_USER}
-        POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
-        POSTGRES_DB: ${DATABASE_NAME}
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
     ports:
       - "5432:5432"
     volumes:
       - ./db:/var/lib/postgresql/data
-
+    networks:
+      - app-net
+  broker:
+    image: rabbitmq:3.6.6
+    ports:
+      - "5672:5672"
+    env_file:
+      - .env
+    networks:
+      - app-net
   app:
-    build:
-      context: .
+    build: .
+    container_name: app
     command: bash -c "python manage.py migrate &&
       python manage.py collectstatic --noinput &&
       python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - ./:/usr/src/app/
     ports:
       - 8000:8000
     env_file:
-      - ./.env
+      - .env
     depends_on:
       - db
+      - broker
+    networks:
+      - app-net
+  worker:
+    build: .
+    container_name: worker
+    command: celery -A src worker -l info
+    env_file:
+      - .env
+    volumes:
+      - ./:/usr/src/app/
+
+    depends_on:
+      - db
+      - broker
+      - app
+    restart: on-failure
+    networks:
+      - app-net
+  celery-beat:
+    build: .
+    container_name: celery_beat
+    command: celery -A src beat -l info
+    volumes:
+      - ./:/usr/src/app/
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - broker
+      - app
+    networks:
+      - app-net
+networks:
+  app-net:
+    name: app-net
+volumes:
+  postgres_data:
