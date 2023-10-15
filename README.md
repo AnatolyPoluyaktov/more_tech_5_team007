@@ -5,7 +5,13 @@
 [Сваггер](http://146.190.161.174:8000/swagger/)
 
 #  Инструкция по развертыванию
+### развертывание бекенда
 
+- git clone git@github.com:AnatolyPoluyaktov/more_tech_5_team007.git
+- cd backend
+- touch .env
+- описываем свои креды по шаблону .env.example
+- docker-compose up -d --build
 # Архитектура
 
 # Схема базы данных
