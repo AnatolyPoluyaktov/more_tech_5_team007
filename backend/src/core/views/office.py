@@ -9,6 +9,8 @@ import django_filters
 from src.core.serializers.efficient_search_input_data import (
     EfficientSearchOfficeInputData,
 )
+from src.core.services.efficient_search.efficient_search_office import range_alg_offices
+from src.core.serializers.prioritised_data import PrioritisedDataOffice
 
 
 class OfficeViewSet(viewsets.ReadOnlyModelViewSet):
@@ -27,7 +29,17 @@ class OfficeViewSet(viewsets.ReadOnlyModelViewSet):
 
         return super(OfficeViewSet, self).get_serializer_class()
 
-    @swagger_auto_schema(methods=["post"], request_body=EfficientSearchOfficeInputData)
+    @swagger_auto_schema(
+        methods=["post"],
+        request_body=EfficientSearchOfficeInputData,
+    )
     @action(methods=["POST"], detail=False)
     def get_most_efficient_office(self, request, pk=None):
-        return Response({"message": f"Custom GET action executed for instance {pk}."})
+        data = EfficientSearchOfficeInputData(data=request.data, many=True)
+        proitiesed_offices = range_alg_offices(data)
+        entities = []
+        for index, bank_id in enumerate(proitiesed_offices, start=1):
+            entity = {"bank_id": bank_id, "proitiesed_offices": index}
+            entities.append(entity)
+        PrioritisedDataOffice(data=entities, many=True)
+        return Response(PrioritisedDataOffice(data=entities, many=True).data)

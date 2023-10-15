@@ -1,6 +1,10 @@
 import pandas as pd
-from pandas import
-def make_time_series(history_data_path, workload_name="person_per_window") -> pd.DataFrame:
+from joblib import load
+
+
+def make_time_series(
+    history_data_path, workload_name="person_per_window"
+) -> pd.DataFrame:
     """
     Make extra dates when office/atms does not work, fill them zero
 
@@ -36,11 +40,13 @@ def make_time_series(history_data_path, workload_name="person_per_window") -> pd
             df_original_tr.loc[i, "target"] = df_original.loc[str(time), "target"]
 
     df_original_tr = df_original_tr.set_index("timestamp")
-    df_original_tr = df_original_tr.asfreq('H')
+    df_original_tr = df_original_tr.asfreq("H")
     return df_original_tr
 
 
-def get_time_series(df_time_series: pd.DataFrame, model_path: str, horizon: int = 24) -> pd.Series:
+def get_time_series(
+    df_time_series: pd.DataFrame, model_path: str, horizon: int = 24
+) -> pd.Series:
     forecaster_loaded = load(model_path)
     forecaster_loaded.fit(df_time_series.iloc[:, 0])
     time_series_pred = forecaster_loaded.predict(steps=horizon)

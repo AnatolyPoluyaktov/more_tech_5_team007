@@ -2,7 +2,7 @@ import datetime
 import pandas as pd
 
 
-def range_alg_offices(data_path) -> list[int]:
+def range_alg_offices(data: dict) -> list[int]:
     """
     return ranged list of bank_id
 
@@ -23,8 +23,8 @@ def range_alg_offices(data_path) -> list[int]:
         ).total_seconds()
         return total_seconds / 60
 
-    df_load = pd.read_json(data_path)
-    data_list = [pd.Series(x) for x in df_load["data"]]
+    df_load = pd.from_dict(data)
+    data_list = [pd.Series(x) for x in df_load]
     df = pd.DataFrame(data_list)
     df = df.set_index("bank_id")
     df[["time_auto", "time_foot", "time_moto"]] = df[
@@ -38,6 +38,3 @@ def range_alg_offices(data_path) -> list[int]:
     range_list.sort_values(inplace=True)
 
     return list(range_list.index)
-
-
-range_alg_offices("offices_example.json")

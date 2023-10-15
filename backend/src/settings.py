@@ -131,3 +131,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+RMQ_HOST = os.getenv("RMQ_HOST")
+RMQ_PORT = os.getenv("RMQ_PORT")
+RMQ_USER = os.getenv("RMQ_USER")
+RMQ_PASS = os.getenv("RMQ_PASS")
+RMQ_VHOST = os.getenv("RMQ_VHOST", "/")
+CELERY_BROKER_URL = f"amqp://{RMQ_USER}:{RMQ_PASS}@{RMQ_HOST}:{RMQ_PORT}/{RMQ_VHOST}"
